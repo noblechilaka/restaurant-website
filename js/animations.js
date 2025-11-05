@@ -404,6 +404,53 @@ gsap.fromTo(
   }
 );
 
+// Luxury Header Animation
+gsap.utils.toArray(".luxury-header").forEach((header) => {
+  const subheader = header.querySelector(".subheader");
+  const mainHeader = header.querySelector(".main-header");
+  const subtitle = header.querySelector(".subtitle");
+
+  gsap.set([subheader, mainHeader, subtitle], { opacity: 0, y: 15 });
+
+  gsap.to(subheader, {
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    ease: "cubic-bezier(0.25, 1, 0.5, 1)",
+    scrollTrigger: {
+      trigger: header,
+      start: "top 80%",
+      once: true,
+    },
+  });
+
+  gsap.to(mainHeader, {
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    ease: "cubic-bezier(0.25, 1, 0.5, 1)",
+    delay: 0.1,
+    scrollTrigger: {
+      trigger: header,
+      start: "top 80%",
+      once: true,
+    },
+  });
+
+  gsap.to(subtitle, {
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    ease: "cubic-bezier(0.25, 1, 0.5, 1)",
+    delay: 0.2,
+    scrollTrigger: {
+      trigger: header,
+      start: "top 80%",
+      once: true,
+    },
+  });
+});
+
 // Other pages: Animate sections with fade and slide up
 gsap.utils.toArray("section").forEach((section) => {
   gsap.fromTo(
@@ -456,30 +503,27 @@ gsap.utils.toArray(".page-hero-content").forEach((content) => {
   );
 });
 
-
-
 //SCROLL SPEED ADJUSTMENTS//
 // Initialize Lenis (smooth scrolling)
 const lenis = new Lenis({
-  duration: 1.3,          // feel of scroll speed
-  easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-  direction: 'vertical',
+  duration: 1.3, // feel of scroll speed
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  direction: "vertical",
   smooth: true,
   smoothTouch: false,
   touchMultiplier: 1.5,
 });
 
 // GSAP + ScrollTrigger sync with Lenis
-lenis.on('scroll', ScrollTrigger.update);
+lenis.on("scroll", ScrollTrigger.update);
 
 gsap.ticker.add((time) => {
   lenis.raf(time * 1000);
 });
 gsap.ticker.lagSmoothing(0);
 
-
 // Example Scroll Animations
-gsap.utils.toArray('.fade-up').forEach((section) => {
+gsap.utils.toArray(".fade-up").forEach((section) => {
   gsap.from(section, {
     scrollTrigger: {
       trigger: section,
@@ -490,7 +534,7 @@ gsap.utils.toArray('.fade-up').forEach((section) => {
     opacity: 0,
     y: 60,
     duration: 1.2,
-    ease: "power2.out"
+    ease: "power2.out",
   });
 });
 
@@ -521,7 +565,7 @@ gsap.utils.toArray('.fade-up').forEach((section) => {
 // });
 
 // Example Scroll Animations
-gsap.utils.toArray('.fade-up').forEach((section) => {
+gsap.utils.toArray(".fade-up").forEach((section) => {
   gsap.from(section, {
     scrollTrigger: {
       trigger: section,
@@ -532,7 +576,6 @@ gsap.utils.toArray('.fade-up').forEach((section) => {
     opacity: 0,
     y: 60,
     duration: 1.2,
-    ease: "power2.out"
+    ease: "power2.out",
   });
 });
-

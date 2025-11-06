@@ -47,6 +47,9 @@ function handleScroll() {
   lastScrollY = currentScrollY;
 }
 
+
+
+
 // Toggle mobile navigation menu visibility and prevent body scrolling
 function toggleMobileMenu() {
   mobileMenu.classList.toggle("active");

@@ -36,6 +36,16 @@
     />
   </head>
   <body>
+    <!-- preloader -->
+
+    <div id="preloader">
+      <div class="loader">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+      </div>
+    </div>
+    
     <!-- Navigation -->
     <nav class="nav">
       <div class="nav-container">
@@ -471,6 +481,9 @@
       </div>
     </footer>
 
+  
+    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <!-- Lenis Smooth Scroll -->
@@ -478,5 +491,18 @@
     <script type="module" src="js/animations.js"></script>
     <script type="module" src="js/script.js"></script>
     <button id="backToTop" aria-label="Back to Top">↑</button>
+
+    <script>
+      window.addEventListener("load", () => {
+        const preloader = document.getElementById("preloader");
+    
+        // Fade out after a small delay
+        setTimeout(() => {
+          preloader.classList.add("hide");
+          preloader.addEventListener("transitionend", () => preloader.remove());
+        }, 3000);
+      });
+    </script>
+    
   </body>
 </html>

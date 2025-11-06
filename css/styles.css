@@ -82,6 +82,7 @@ h6 {
   font-family: var(--font-serif);
   font-weight: 600;
   line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1 {
@@ -153,6 +154,30 @@ p {
   transition: var(--transition);
   text-align: center;
   min-width: 180px;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  transform: translateZ(0);
+}
+
+/* Animated text elements */
+.word,
+.intro-title,
+.second-title,
+.subtitle,
+.second-subtitle,
+.intro-text,
+.menu-highlight-text h2,
+.menu-highlight-text p,
+.interior-text,
+.testimonials-carousel,
+.luxury-header .subheader,
+.luxury-header .main-header,
+.luxury-header .subtitle {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  transform: translateZ(0);
 }
 
 .btn-outline {
@@ -300,6 +325,9 @@ p {
   color: var(--text-light);
   position: relative;
   transition: var(--transition);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 .nav-links a:hover,
@@ -337,6 +365,9 @@ p {
   color: var(--text-light);
   font-size: 16px;
   transition: var(--transition);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 .nav-social a:hover {
@@ -385,8 +416,7 @@ p {
   height: 100%;
   gap: 40px;
 }
-
-.mobile-menu-content a {
+s .mobile-menu-content a {
   font-size: 24px;
   font-weight: 500;
   text-transform: uppercase;
@@ -514,8 +544,10 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.1);
+  transform: scale(1.1) translateZ(0);
   animation: heroParallax 20s ease-in-out infinite alternate;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 @keyframes heroParallax {
@@ -675,6 +707,9 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .page-hero-content {
@@ -712,6 +747,9 @@ p {
   border-radius: 8px;
   overflow: hidden;
   transition: var(--transition);
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .intro-image-1:hover,
@@ -770,6 +808,9 @@ p {
   border-radius: 8px;
   overflow: hidden;
   transition: var(--transition);
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .menu-highlight-image:hover {
@@ -803,6 +844,9 @@ p {
   border-radius: 8px;
   overflow: hidden;
   transition: var(--transition);
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .interior-image-main:hover,
@@ -856,6 +900,9 @@ p {
   border-radius: 8px;
   overflow: hidden;
   transition: var(--transition);
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .editorial-image:hover {
@@ -953,6 +1000,9 @@ p {
   overflow: hidden;
   margin-bottom: 20px;
   transition: var(--transition);
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .member-image:hover {
@@ -1298,6 +1348,9 @@ p {
   border-radius: 8px;
   overflow: hidden;
   transition: var(--transition);
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .wine-image:hover {
@@ -1318,6 +1371,15 @@ p {
   overflow: hidden;
   cursor: pointer;
   transition: var(--transition);
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.gallery-item img {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .gallery-item:hover {
@@ -1337,6 +1399,9 @@ p {
   height: 100%;
   object-fit: cover;
   transition: var(--transition);
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .gallery-overlay {

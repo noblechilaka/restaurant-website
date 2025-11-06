@@ -1,8 +1,21 @@
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
+// Set ScrollTrigger optimizations
+ScrollTrigger.defaults({
+  fastScrollEnd: true,
+  invalidateOnRefresh: true,
+  threshold: 0.1,
+});
+
+// Set smooth frame rate
+gsap.ticker.fps(60);
+
 // Check if mobile device
 const isMobile = window.innerWidth <= 768;
+
+// Mobile easing optimization
+const mobileEase = isMobile ? "power2.out" : "power3.out";
 
 // Hero Section On-Load Animations
 const heroTl = gsap.timeline();
@@ -29,7 +42,13 @@ const socialDuration = isMobile ? 0.4 : 0.5;
 heroTl.fromTo(
   ".nav-logo",
   { opacity: 0, y: -20 },
-  { opacity: 1, y: 0, duration: logoDuration, ease: "power2.out" },
+  {
+    opacity: 1,
+    y: 0,
+    duration: logoDuration,
+    ease: "power2.out",
+    force3D: true,
+  },
   0.2
 );
 
@@ -43,6 +62,7 @@ heroTl.fromTo(
     duration: linkDuration,
     stagger: 0.1,
     ease: "power2.out",
+    force3D: true,
   },
   "-=0.5"
 );
@@ -51,7 +71,13 @@ heroTl.fromTo(
 heroTl.fromTo(
   ".intro-title",
   { opacity: 0, y: 20 },
-  { opacity: 1, y: 0, duration: introDuration, ease: "power2.out" },
+  {
+    opacity: 1,
+    y: 0,
+    duration: introDuration,
+    ease: "power2.out",
+    force3D: true,
+  },
   0.6
 );
 
@@ -65,6 +91,7 @@ heroTl.fromTo(
     duration: wordDuration,
     stagger: 0.1,
     ease: "power2.out",
+    force3D: true,
   },
   0.8
 );
@@ -73,7 +100,7 @@ heroTl.fromTo(
 heroTl.fromTo(
   ".subtitle",
   { opacity: 0 },
-  { opacity: 1, duration: subtitleDuration, ease: "power2.out" },
+  { opacity: 1, duration: subtitleDuration, ease: "power2.out", force3D: true },
   1.2
 );
 
@@ -81,7 +108,7 @@ heroTl.fromTo(
 heroTl.fromTo(
   ".second-subtitle",
   { opacity: 0 },
-  { opacity: 1, duration: subtitleDuration, ease: "power2.out" },
+  { opacity: 1, duration: subtitleDuration, ease: "power2.out", force3D: true },
   1.5
 );
 
@@ -89,7 +116,13 @@ heroTl.fromTo(
 heroTl.fromTo(
   ".btn-hero",
   { opacity: 0, scale: 0.95 },
-  { opacity: 1, scale: 1, duration: buttonDuration, ease: "power2.out" },
+  {
+    opacity: 1,
+    scale: 1,
+    duration: buttonDuration,
+    ease: "power2.out",
+    force3D: true,
+  },
   1.8
 );
 
@@ -197,19 +230,19 @@ gsap.fromTo(
   }
 );
 
-// Footer CTA: fade-in with background glow sweep animation
+// Footer CTA: fade-in with transform animation
 gsap.fromTo(
   ".footer-cta-btn",
-  { opacity: 0, backgroundPosition: "200% center" },
+  { opacity: 0, y: 20 },
   {
     opacity: 1,
-    backgroundPosition: "50% center",
+    y: 0,
     duration: scrollDuration + 0.5,
     delay: scrollDelay,
-    ease: "power2.out",
+    ease: mobileEase,
     scrollTrigger: {
       trigger: ".footer",
-      start: "top 90%",
+      start: "top 85%",
       once: true,
     },
   }
@@ -451,56 +484,53 @@ gsap.utils.toArray(".luxury-header").forEach((header) => {
   });
 });
 
-// Other pages: Animate sections with fade and slide up
-gsap.utils.toArray("section").forEach((section) => {
-  gsap.fromTo(
-    section,
-    { opacity: 0, y: 30 },
-    {
-      opacity: 1,
-      y: 0,
-      duration: scrollDuration,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: section,
-        start: "top 85%",
-        once: true,
-      },
-    }
-  );
+// Other pages: Animate sections with fade and slide up using batch
+ScrollTrigger.batch("section", {
+  onEnter: (batch) =>
+    gsap.fromTo(
+      batch,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: scrollDuration,
+        ease: mobileEase,
+        stagger: 0.1,
+      }
+    ),
+  start: "top 85%",
+  once: true,
 });
 
 // Parallax scroll effect for hero sections on about, menu, contact pages
 gsap.utils.toArray(".page-hero-bg, .hero-bg img").forEach((img) => {
   gsap.to(img, {
     scale: 1.15,
-    ease: "power2.out",
+    ease: mobileEase,
     scrollTrigger: {
       trigger: img.closest(".page-hero"),
       start: "top top",
       end: "bottom top",
-      scrub: true,
+      scrub: 1,
     },
   });
 });
 
 // Fade in hero content on these pages
-gsap.utils.toArray(".page-hero-content").forEach((content) => {
-  gsap.fromTo(
-    content,
-    { opacity: 0, y: 20 },
-    {
-      opacity: 1,
-      y: 0,
-      duration: scrollDuration,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: content.closest(".page-hero"),
-        start: "top 80%",
-        once: true,
-      },
-    }
-  );
+ScrollTrigger.batch(".page-hero-content", {
+  onEnter: (batch) =>
+    gsap.fromTo(
+      batch,
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: scrollDuration,
+        ease: mobileEase,
+      }
+    ),
+  start: "top 85%",
+  once: true,
 });
 
 //SCROLL SPEED ADJUSTMENTS//
@@ -534,48 +564,6 @@ gsap.utils.toArray(".fade-up").forEach((section) => {
     opacity: 0,
     y: 60,
     duration: 1.2,
-    ease: "power2.out",
-  });
-});
-
-// // Example Hero Animation (modify classes to match your HTML)
-// gsap.from(".hero-title span", {
-//   y: 40,
-//   opacity: 0,
-//   duration: 1,
-//   stagger: 0.05,
-//   delay: 0.5,
-//   ease: "power2.out"
-// });
-
-// gsap.from(".hero-subtitle", {
-//   opacity: 0,
-//   y: 20,
-//   duration: 1,
-//   delay: 1.3,
-//   ease: "power2.out"
-// });
-
-// gsap.from(".hero-btn", {
-//   opacity: 0,
-//   scale: 0.9,
-//   duration: 0.8,
-//   delay: 1.8,
-//   ease: "power2.out"
-// });
-
-// Example Scroll Animations
-gsap.utils.toArray(".fade-up").forEach((section) => {
-  gsap.from(section, {
-    scrollTrigger: {
-      trigger: section,
-      start: "top 85%",
-      end: "bottom 10%",
-      scrub: 1,
-    },
-    opacity: 0,
-    y: 60,
-    duration: 1.2,
-    ease: "power2.out",
+    ease: mobileEase,
   });
 });

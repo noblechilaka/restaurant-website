@@ -47,20 +47,26 @@ function handleScroll() {
   lastScrollY = currentScrollY;
 }
 
-
-
-
 // Toggle mobile navigation menu visibility and prevent body scrolling
 function toggleMobileMenu() {
-  mobileMenu.classList.toggle("active");
-  document.body.style.overflow = mobileMenu.classList.contains("active")
-    ? "hidden"
-    : "";
+  const isActive = mobileMenu.classList.contains("active");
+  if (isActive) {
+    // Closing: remove menu active immediately, delay hamburger reset
+    mobileMenu.classList.remove("active");
+    document.body.style.overflow = "";
+    setTimeout(() => navToggle.classList.remove("active"), 150);
+  } else {
+    // Opening: add both immediately
+    mobileMenu.classList.add("active");
+    navToggle.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
 }
 
 // Close mobile menu and restore body scrolling
 function closeMobileMenu() {
   mobileMenu.classList.remove("active");
+  navToggle.classList.remove("active");
   document.body.style.overflow = "";
 }
 

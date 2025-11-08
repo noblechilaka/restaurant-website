@@ -418,8 +418,8 @@ p {
   transform: translateZ(0);
 }
 
-/* Animated text elements */
-.word,
+Animated text elements
+/* .word,
 .intro-title,
 .second-title,
 .subtitle,
@@ -436,15 +436,15 @@ p {
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
   transform: translateZ(0);
-}
+} */
 
 /* Initial states for scroll-triggered animations to prevent flash */
-.word {
+/* .word {
   opacity: 0;
   transform: translateY(30px) translateZ(0);
-}
+} */
 
-.intro-title,
+/* .intro-title,
 .subtitle,
 .second-subtitle,
 .intro-text,
@@ -457,7 +457,7 @@ p {
 .luxury-header .subtitle {
   opacity: 0;
   transform: translateY(15px) translateZ(0);
-}
+} */
 
 /* Section fade-up animations */
 .fade-up {
@@ -466,11 +466,11 @@ p {
 }
 
 /* Intro section animations */
-.intro-image-1,
+/* .intro-image-1,
 .intro-image-2 {
   opacity: 0;
   transform: translateY(20px) translateZ(0);
-}
+} */
 
 .intro-image-2 {
   transform: translateY(-20px) translateZ(0);
@@ -494,10 +494,10 @@ p {
 }
 
 /* CTA buttons */
-.btn {
+/* .btn {
   opacity: 0;
   transform: translateY(20px) translateZ(0);
-}
+} */
 
 /* Footer CTA */
 .footer-cta-btn {
@@ -1394,6 +1394,18 @@ p {
 .philosophy-item p {
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 0;
+}
+
+.philosophy-cta {
+  text-align: center;
+  margin-top: 60px;
+}
+
+@media (max-width: 768px) {
+  .philosophy-cta {
+    text-align: center;
+    margin-top: 60px;
+  }
 }
 
 /* Menu Filtering Controls */

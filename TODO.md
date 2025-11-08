@@ -1,12 +1,4 @@
-# Preloader Positioning and Styling Task
-
-## Tasks
-
-- [x] Update CSS for .loader to center on screen with white background
-- [x] Add CSS for .loader.hide to disappear after page load
-- [ ] Verify preloader behavior on page load
-
-## Notes
-
-- Preloader is already set to hide on window load in script.js
-- Ensure centering uses fixed positioning
+- [ ] Read about.html to find philosophy section
+- [ ] Read contact.html to find email link
+- [ ] Add "Book Your Table" button under philosophy section in about.html linking to email
+- [ ] Test the button on about page

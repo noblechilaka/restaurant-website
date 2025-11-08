@@ -482,15 +482,15 @@ Animated text elements
 }
 
 /* Interior section animations */
-.interior-image-main,
+/* .interior-image-main,
 .interior-image-overlay {
   clip-path: inset(100% 0% 0% 0%);
   
-}
-
+} */
+/* 
 .interior-image-overlay {
   clip-path: inset(100% 0% 0% 0%);
-}
+} */
 
 /* CTA buttons */
 /* .btn {

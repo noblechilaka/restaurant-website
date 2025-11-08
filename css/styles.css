@@ -461,7 +461,6 @@ Animated text elements
 
 /* Section fade-up animations */
 .fade-up {
-  opacity: 0;
   transform: translateY(60px) translateZ(0);
 }
 

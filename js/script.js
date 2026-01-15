@@ -46,6 +46,12 @@ function handleScroll() {
 
   lastScrollY = currentScrollY;
 }
+// Wait for the full page (including images, CSS, scripts) to load
+window.addEventListener("load", function() {
+  const preloader = document.getElementById("preloader");
+  preloader.classList.add("hide");
+});
+
 
 // Toggle mobile navigation menu visibility and prevent body scrolling
 function toggleMobileMenu() {
